@@ -1,11 +1,11 @@
-dev = /dev/sdc
+dev = /dev/sdb3
 ASMFLAGS = -f bin
 
 
 all:bootloader os  about vidmem echo help exit reg install
-	cpy $(dev) bootloader os about vidmem echo help exit reg
+	./cpy $(dev) bootloader os about vidmem echo help exit reg
 	@echo "Done...Written to disk"
-	
+
 
 bootloader:bootloader.asm
 	nasm $(ASMFLAGS) bootloader.asm
@@ -37,7 +37,6 @@ exit:exit.asm
 
 install:cpy.c
 	cc cpy.c -o cpy
-	cp cpy /bin/cpy
 
 clean:
 	rm bootloader
